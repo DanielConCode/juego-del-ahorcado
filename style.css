@@ -49,10 +49,8 @@ button:hover{
 }
 
 /* DISENO DE JUGAR.HTML */
-canvas{
-    border: solid black 1px;
+.canvas-ahorcado{
     display: block;
     margin: 0 auto;
     margin-top: 4em;
-    height: 300px;
 }

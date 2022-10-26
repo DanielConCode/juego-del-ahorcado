@@ -1,0 +1,58 @@
+main{
+    font-family: 'Shalimar', cursive;
+}
+
+body{
+    background-image: url(imagenes/fondo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.logo{
+    width: 150px;
+    margin-left: 1.5em;
+    margin-top: 0.5em;
+    border: solid black 1px;
+    border-radius: 25px;
+}
+
+.titulo{
+    font-size: 68px;
+    text-align: center;
+}
+
+/* DISENO DE INDEX.HTML */
+.div-botones{
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+button{
+    font-family: cursive;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    border-radius: 22px;
+    width: 210px;
+    height: 50px;
+    margin: 2em;
+    transition: 0.5s;
+}
+
+button:hover{
+    transform: scale(1.2);
+    background-color: darkgreen;
+    border: none;
+}
+
+/* DISENO DE JUGAR.HTML */
+canvas{
+    border: solid black 1px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 4em;
+    height: 300px;
+}

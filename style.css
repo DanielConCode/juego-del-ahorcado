@@ -48,9 +48,25 @@ button:hover{
     border: none;
 }
 
+.boton-nuevo-juego{
+    display: none;
+}
+
+.boton-rendirse{
+    display: none;
+}
+
 /* DISENO DE JUGAR.HTML */
-.canvas-ahorcado{
+canvas{
     display: block;
     margin: 0 auto;
-    margin-top: 4em;
+}
+
+.canvas-ahorcado{
+    margin-top: 3em;
+}
+
+.canvas-letras{
+    border: solid black 1px;
+
 }

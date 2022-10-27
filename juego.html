@@ -12,11 +12,14 @@
 </head>
 <body>
     <main>
-        <canvas class = "canvas-ahorcado" width = "250px" height = "300px"></canvas>
+        <canvas class="canvas-ahorcado" width="250px" height="300px"></canvas>
+        <canvas class="canvas-letras" width="600px" height="150px"></canvas>
         <section>
             <div class="div-botones">
                 <button onclick="location.href='index.html'">Salir</button>
-                <button onclick="">Rendirse</button>
+                <button class="boton-empezar-juego" onclick="IniciarJuego()">Empezar Juego</button>
+                <button class="boton-nuevo-juego" onclick="location.reload()">Nuevo Juego</button>
+                <button class="boton-rendirse" onclick="">Rendirse</button>
             </div>
         </section>
     </main>

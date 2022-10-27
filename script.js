@@ -1,10 +1,60 @@
-/* DISENO DE JUGAR.HTML */
+/* SCRIPT PARA JUGAR.HTML */
 
-//Variable Pantalla que toma como referencia la canva
-var pantalla = document.querySelector("canvas");
+//Arrays que contienen las palabras predeterminadas y letras
+var palabras = ["JAVASCRIPT", "ORACLE", "HTML", ];
+var letras = [];
 
-//variable Pincel para dibujar en la canva
+//variable errores que contiene el numero de oportunidades antes de perder
+var errores = 9;
+
+//Variable que contrendra  la palabra secreta
+var palabraSecreta;
+
+//Variable Pantalla que toma como referencia cada canva
+var pantalla = document.querySelector(".canvas-ahorcado");
+var pantallaLetras = document.querySelector(".canvas-letras");
+
+//variable Pincel que toma nuestro contexto para dibujar en la canva
 var pincel = pantalla.getContext("2d");
+
+//Funcion que inicia el juego al presionar el boton Empezar Juego
+function IniciarJuego()
+{
+    EscogerPalabra();
+    dibujarLineas();
+    document.querySelector(".boton-empezar-juego").style.display = "none";
+    document.querySelector(".boton-nuevo-juego").style.display = "inline-block";
+    document.querySelector(".boton-rendirse").style.display = "inline-block";
+}
+
+//Funcion para escoger una palabra secreta
+function EscogerPalabra()
+{
+    var palabra = palabras[Math.floor(Math.random()*palabras.length)];
+    palabraSecreta = palabra;
+}
+
+//Funcion para dibujar las líneas que serán los guiones para nuestra palabra secreta
+function dibujarLineas()
+{
+    pincel = pantallaLetras.getContext("2d");
+
+    var anchura = 600 / palabraSecreta.length;
+    
+    pincel.strokeStyle = "black";
+    pincel.lineWidth = 3;
+
+    for(var i = 0; i < palabraSecreta.length; i++)
+    {
+        pincel.moveTo(0 + (anchura * i), 60);
+        pincel.lineTo(50 + (anchura * i), 60);
+    }
+    pincel.stroke();
+    pincel.closePath();
+}
+
+
+//Dibujar el ahorcado:
 
 //STROKE dibuja el tramo trazado, con StrokeStyle definimos el color del trazo
 pincel.strokeStyle = "darkblue";
@@ -53,4 +103,5 @@ function DibujarTrazo(x1, y1, x2, y2)
     pincel.moveTo(x1,y1); //Punto inicial 
     pincel.lineTo(x2,y2); //Punto final
     pincel.stroke(); 
+    pincel.closePath();
 }

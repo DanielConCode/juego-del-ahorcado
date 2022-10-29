@@ -1,7 +1,7 @@
 /* SCRIPT PARA JUGAR.HTML */
 
 //Arrays que contienen las palabras predeterminadas y letras
-var palabras = ["JAVASCRIPT", "ORACLE", "HTML", ];
+var palabras = ["JAVASCRIPT", "ORACLE", "HTML", "CSS", "FUNCION", "VARIABLE"];
 var letras = [];
 
 //variable que cuenta el numero de aciertos acorde al numero de letras de la palabra
@@ -34,7 +34,6 @@ function IniciarJuego()
     dibujarLineas();
     document.querySelector(".boton-empezar-juego").style.display = "none";
     document.querySelector(".boton-rendirse").style.display = "inline-block";
-    document.querySelector(".boton-salir").style.display = "none";
     
     //evento especifico de entrada desde el teclado, e variable de evento, y funcion de flecha, para iniciarla y que siempre se ejecute sin parametros o nombres
     document.onkeydown = (e) =>
@@ -70,6 +69,11 @@ function IniciarJuego()
             DibujarTexto("green", "Ganaste!", 250, 150);
             ganaste = true;
         }  
+        if(ganaste == true)
+        {
+            document.querySelector(".boton-rendirse").style.display = "none";
+            document.querySelector(".boton-salir").style.display = "inline-block";
+        }
     }
 }
 
@@ -153,7 +157,6 @@ function AnadirLetraCorrecta(letra)
     numeroAciertos++;
 }
 
-
 //Funcion que resta los intentos
 function AnadirLetraIncorrecta(letra)
 {
@@ -182,7 +185,7 @@ function RevisarLetraRepetida(letra, grupoLetras)
     return repetida;
 }
 
-//
+// Funciones que ocultan y muestran los divs acorde al boton presionado 
 
 function BotonJugar()
 {
@@ -195,4 +198,12 @@ function BotonAgregarPalabra()
     document.querySelector(".div-inicio").style.display = "none";
     document.querySelector(".div-palabra").style.display = "block";
 
+}
+
+function BotonRendirse()
+{
+    alert("La palabra era: " + palabraSecreta);
+    document.querySelector(".boton-rendirse").style.display = "none";
+    perdiste = true;
+    DibujarTexto("red", "Fin del juego!", 250, 150);
 }

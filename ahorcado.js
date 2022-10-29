@@ -40,7 +40,10 @@ function DibujarHorca(errores)
         break;
         case 0:
             DibujarTrazo(175,170,200,200);
-            DibujarTexto("red", "Fin del juego!", 250, 150)
+            DibujarTexto("red", "Fin del juego!", 250, 150);
+            perdiste = true;
+            document.querySelector(".boton-rendirse").style.display = "none";
+            document.querySelector(".boton-salir").style.display = "inline-block";
         break;
     }
 

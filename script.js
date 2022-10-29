@@ -4,7 +4,21 @@
 var palabras = ["JAVASCRIPT", "ORACLE", "HTML", ];
 var letras = [];
 
-//variable errores que contiene el numero de oportunidades antes de perder
+//variable que cuenta el numero de aciertos acorde al numero de letras de la palabra
+var numeroAciertos = 0;
+
+//variable que contiene el numero de errores que se puede cometer anter de perder
+var numeroErrores = 9;
+
+//arrays que guardan las letras ingresadas, en fallos ingresa las incorrectas y las correctas en aciertos
+var fallos = [];
+var aciertos = [];
+
+//Variable que indica si ganaste el juego o si perdiste.
+var ganaste = false;
+var perdiste = false;
+
+//variable errores que contiene el numero de oportunidades antes de perder y que disminuira en 1 al equivocarse
 var errores = 9;
 
 //Variable que contrendra  la palabra secreta
@@ -22,26 +36,42 @@ function IniciarJuego()
     document.querySelector(".boton-empezar-juego").style.display = "none";
     document.querySelector(".boton-nuevo-juego").style.display = "inline-block";
     document.querySelector(".boton-rendirse").style.display = "inline-block";
+    document.querySelector(".boton-salir").style.display = "none";
 
     //evento especifico de entrada desde el teclado, e variable de evento, y funcion de flecha, para iniciarla y que siempre se ejecute sin parametros o nombres
     document.onkeydown = (e) =>
     {
         var letra = e.key.toUpperCase();
+        var repetida;
 
-        if(verificarTecla(letra) && palabraSecreta.includes(letra))
+        if(palabraSecreta.includes(letra))
         {
-            for(var i=0; i<palabraSecreta.length; i++)
+            repetida = RevisarLetraRepetida(letra, aciertos);
+            if(repetida == false && perdiste == false)
             {
-                if(palabraSecreta[i] == letra)
+                for(var i=0; i<palabraSecreta.length; i++)
                 {
-                    EscribirLetraCorrecta(i);
+                    if(palabraSecreta[i] == letra)
+                    {
+                        AnadirLetraCorrecta(letra);
+                        EscribirLetraCorrecta(i);
+                    }
                 }
             }
         } else
         {
-            AnadirLetraIncorrecta(letra);
-            EscribirLetraIncorrecta(letra, errores);
+            repetida = RevisarLetraRepetida(letra, fallos);
+            if(repetida == false && ganaste == false)
+            {
+                AnadirLetraIncorrecta(letra);
+                EscribirLetraIncorrecta(letra, errores);
+            }
         }
+        if(numeroAciertos == palabraSecreta.length)
+        {        
+            DibujarTexto("green", "Ganaste!", 250, 150);
+            ganaste = true;
+        }  
     }
 }
 
@@ -114,15 +144,41 @@ function EscribirLetraIncorrecta(letra, errorsLeft)
     pincel.lineWidth = 6;
     pincel.fillStyle = "darkgreen";
 
-    var anchura = 600 / palabraSecreta.length;
-
     pincel.fillText(letra, (40*(10-errorsLeft)), 100, 40);
 }
 
 //Funcion que resta los intentos
-function AnadirLetraIncorrecta()
+function AnadirLetraCorrecta(letra)
 {
+    aciertos.push(letra);
+    numeroAciertos++;
+}
+
+
+//Funcion que resta los intentos
+function AnadirLetraIncorrecta(letra)
+{
+    fallos.push(letra);
     errores = errores - 1;
-    console.log(errores);
-    DibujarHorca(errores)
+    DibujarHorca(errores);
+}
+
+//Funcion que verifica que la letra ingresada no haya sido ingresada antes, toma como parametro la letra ingresada y un array, ya sea el de las letras incorrectas o las correctas
+function RevisarLetraRepetida(letra, grupoLetras)
+{
+    var repetida = false;
+
+    for(var i=0; i<grupoLetras.length; i++)
+    {
+        if(letra == grupoLetras[i])
+        {
+            repetida = true;
+            break;
+        }
+        else
+        {
+            repetida = false;
+        }
+    }
+    return repetida;
 }

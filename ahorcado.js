@@ -44,6 +44,7 @@ function DibujarHorca(errores)
             perdiste = true;
             document.querySelector(".boton-rendirse").style.display = "none";
             document.querySelector(".boton-salir").style.display = "inline-block";
+            alert("La palabra correcta era: " + palabraSecreta);
         break;
     }
 

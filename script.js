@@ -40,39 +40,45 @@ function IniciarJuego()
     {
         var letra = e.key.toUpperCase();
         var repetida;
-    
-        if(palabraSecreta.includes(letra))
+
+        var letraIngresada = verificarTecla(e.keyCode); //variable booleana que indica si la tecla presionada fue una letra, el parametro es e.keyCode por que es el codigo ASCII del evento
+        console.log(letraIngresada);
+
+        if(letraIngresada == true)
         {
-            repetida = RevisarLetraRepetida(letra, aciertos);
-            if(repetida == false && perdiste == false)
+            if(palabraSecreta.includes(letra))
             {
-                for(var i=0; i<palabraSecreta.length; i++)
+                repetida = RevisarLetraRepetida(letra, aciertos);
+                if(repetida == false && perdiste == false)
                 {
-                    if(palabraSecreta[i] == letra)
+                    for(var i=0; i<palabraSecreta.length; i++)
                     {
-                        AnadirLetraCorrecta(letra);
-                        EscribirLetraCorrecta(i);
+                        if(palabraSecreta[i] == letra)
+                        {
+                            AnadirLetraCorrecta(letra);
+                            EscribirLetraCorrecta(i);
+                        }
                     }
                 }
-            }
-        } else
-        {
-            repetida = RevisarLetraRepetida(letra, fallos);
-            if(repetida == false && ganaste == false)
+            } else
             {
-                AnadirLetraIncorrecta(letra);
-                EscribirLetraIncorrecta(letra, errores);
+                repetida = RevisarLetraRepetida(letra, fallos);
+                if(repetida == false && ganaste == false)
+                {
+                    AnadirLetraIncorrecta(letra);
+                    EscribirLetraIncorrecta(letra, errores);
+                }
             }
-        }
-        if(numeroAciertos == palabraSecreta.length)
-        {        
-            DibujarTexto("green", "Ganaste!", 250, 150);
-            ganaste = true;
-        }  
-        if(ganaste == true)
-        {
-            document.querySelector(".boton-rendirse").style.display = "none";
-            document.querySelector(".boton-salir").style.display = "inline-block";
+            if(numeroAciertos == palabraSecreta.length)
+            {        
+                DibujarTexto("green", "Ganaste!", 250, 150);
+                ganaste = true;
+            }  
+            if(ganaste == true)
+            {
+                document.querySelector(".boton-rendirse").style.display = "none";
+                document.querySelector(".boton-salir").style.display = "inline-block";
+            }
         }
     }
 }
@@ -105,22 +111,17 @@ function dibujarLineas()
 }
 
 //Funcion para verificar si una tecla fue presionada
-function verificarTecla(key) //key, palabra reservada, es el parametro que envia el sistema al presionar una tecla
+function verificarTecla(numero) //key, palabra reservada, es el parametro que envia el sistema al presionar una tecla
 {
-    var estado = false;
-
+    console.log(numero);
     //utilizamos el rango de numeros entre 65 y 90 basado el codigo ASCII, dicho rango de numeros son asignados para las letras del alfabeto
-    if(key >= 65 && letras.indexOf(key) || key <= 90 && letras.indexOf(key))
+    if(numero >= 65 && numero<=90) 
     {
-        letras.push(key);
-        console.log(key);
-        return estado;
+        return true;
     }
     else
     {
-        estado = true;
-        console.log(key)
-        return estado;
+        return false;
     }
 }
 

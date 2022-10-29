@@ -65,3 +65,31 @@ canvas{
 .canvas-ahorcado{
     margin-top: 3em;
 }
+
+.boton-empezar-juego{
+    background-color: red;
+    border-color: red;
+}
+
+/* DISENO DE PALABRA.HTML*/
+textarea{
+    display: block;
+    margin: 0 auto;
+    font-size: 64px;
+    font-family: 'Shalimar';
+    resize: none;
+    border: none;
+    background: none;
+    color: darkgreen;
+    outline: none;
+    text-align: center;
+}
+
+textarea::placeholder{
+    color: darkblue;
+}
+
+.div-palabra, .div-juego{
+    display: none;
+}
+

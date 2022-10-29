@@ -31,19 +31,17 @@ var pantallaLetras = document.querySelector(".canvas-letras");
 function IniciarJuego()
 {
     DibujarHorca(errores);
-    EscogerPalabra();
     dibujarLineas();
     document.querySelector(".boton-empezar-juego").style.display = "none";
-    document.querySelector(".boton-nuevo-juego").style.display = "inline-block";
     document.querySelector(".boton-rendirse").style.display = "inline-block";
     document.querySelector(".boton-salir").style.display = "none";
-
+    
     //evento especifico de entrada desde el teclado, e variable de evento, y funcion de flecha, para iniciarla y que siempre se ejecute sin parametros o nombres
     document.onkeydown = (e) =>
     {
         var letra = e.key.toUpperCase();
         var repetida;
-
+    
         if(palabraSecreta.includes(letra))
         {
             repetida = RevisarLetraRepetida(letra, aciertos);
@@ -80,6 +78,7 @@ function EscogerPalabra()
 {
     var palabra = palabras[Math.floor(Math.random()*palabras.length)];
     palabraSecreta = palabra;
+    IniciarJuego();
 }
 
 //Funcion para dibujar las líneas que serán los guiones para nuestra palabra secreta
@@ -181,4 +180,19 @@ function RevisarLetraRepetida(letra, grupoLetras)
         }
     }
     return repetida;
+}
+
+//
+
+function BotonJugar()
+{
+    document.querySelector(".div-inicio").style.display = "none";
+    document.querySelector(".div-juego").style.display = "block";
+}
+
+function BotonAgregarPalabra()
+{
+    document.querySelector(".div-inicio").style.display = "none";
+    document.querySelector(".div-palabra").style.display = "block";
+
 }

@@ -12,14 +12,36 @@
 </head>
 <body>
     <main>
-        <h1><img src="imagenes/logo.jpg" class="logo" alt="logo"></h1>
-        <section>
+        <section class="div-inicio">
+            <h1><img src="imagenes/logo.jpg" class="logo" alt="logo"></h1>
             <h1 class="titulo">Juego del Ahorcado</h1>
             <div class="div-botones">
-                <button onclick="location.href='juego.html'">Jugar</button>
-                <button onclick="location.href='palabra.html'">Agregar Nueva Palabra</button>
+                <button onclick="BotonJugar()">Jugar</button>
+                <button onclick="BotonAgregarPalabra()">Agregar Nueva Palabra</button>
+            </div>
+        </section>
+        <section class="div-juego">
+            <canvas class="canvas-ahorcado" width="500px" height="300px"></canvas>
+            <canvas class="canvas-letras" width="600px" height="150px"></canvas>
+            <div class="div-botones">
+                <button class="boton-salir" onclick="location.reload()">Salir</button>
+                <button class="boton-empezar-juego" onclick="EscogerPalabra()">Empezar Juego</button>
+                <button class="boton-rendirse" onclick="location.reload()">Rendirse</button>
+            </div>
+        </section>
+        <section class="div-palabra">
+            <h1><img src="imagenes/logo.jpg" class="logo" alt="logo"></h1>
+            <textarea cols="40" rows="1" placeholder="Ingrese la palabra que desea agregar aqui..."></textarea>
+            <div class="div-botones">
+                <button class="boton-salir" onclick="location.reload()">Salir</button>
+                <button onclick="AgregarPalabra()">Agregar y jugar</button>
             </div>
         </section>
     </main>
 </body>
+
+<script src="script.js"></script>
+<script src="ahorcado.js"></script>
+<script src="palabra.js"></script>
+
 </html>
